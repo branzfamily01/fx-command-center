@@ -1,3 +1,4 @@
+# Worker source and deployment configuration are runtime-only
 .git
 .git/**
 .github
