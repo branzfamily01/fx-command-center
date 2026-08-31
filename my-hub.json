@@ -1,27 +1,20 @@
 {
-  "name": "FX Command Center",
+  "schemaVersion": 1,
+  "title": "FX Command Center",
   "slug": "fx-command-center",
-  "owner": "branzfamily01",
-  "version": "1.0.0",
-  "status": "mvp",
-  "description": "EAの収益性・健全性・リスクを確認し、CSV取込とシナリオ分析から次の判断材料をつくるFX command center.",
+  "type": "web-app",
+  "category": "Tools",
+  "summary": "MT4/MT5の取引履歴を読み込み、EAごとの成績・健全性・リスク・検証状況を可視化し、AI分析用プロンプトまで生成するFX運用・研究ツール。",
+  "tags": ["FX", "EA", "MT4", "MT5", "CSV", "Risk", "Backtest", "AI"],
+  "color": "blue",
+  "status": "active",
+  "visibility": "public",
+  "githubRepo": "fx-command-center",
+  "repoUrl": "https://github.com/branzfamily01/fx-command-center",
+  "publicUrl": "https://branzfamily01.github.io/fx-command-center/",
+  "manualUrl": "https://branzfamily01.github.io/fx-command-center/manual.html",
   "entrypoint": "index.html",
-  "manual": "manual.html",
   "runtime": "static",
-  "deployment": {
-    "provider": "github-pages",
-    "workflow": ".github/workflows/deploy-pages.yml",
-    "basePathSafe": true
-  },
-  "features": [
-    "dashboard",
-    "ea-analysis",
-    "ea-health",
-    "csv-import",
-    "lab-scenario",
-    "risk-console",
-    "ai-prompt-generator"
-  ],
   "dataPolicy": "CSV data stays in the browser localStorage and is not uploaded by the app.",
   "updatedAt": "2026-08-31"
 }
