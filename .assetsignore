@@ -2,3 +2,7 @@
 .git/**
 .github
 .github/**
+src
+src/**
+wrangler.jsonc
+.assetsignore
