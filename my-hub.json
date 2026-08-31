@@ -1,0 +1,27 @@
+{
+  "name": "FX Command Center",
+  "slug": "fx-command-center",
+  "owner": "branzfamily01",
+  "version": "1.0.0",
+  "status": "mvp",
+  "description": "EAの収益性・健全性・リスクを確認し、CSV取込とシナリオ分析から次の判断材料をつくるFX command center.",
+  "entrypoint": "index.html",
+  "manual": "manual.html",
+  "runtime": "static",
+  "deployment": {
+    "provider": "github-pages",
+    "workflow": ".github/workflows/deploy-pages.yml",
+    "basePathSafe": true
+  },
+  "features": [
+    "dashboard",
+    "ea-analysis",
+    "ea-health",
+    "csv-import",
+    "lab-scenario",
+    "risk-console",
+    "ai-prompt-generator"
+  ],
+  "dataPolicy": "CSV data stays in the browser localStorage and is not uploaded by the app.",
+  "updatedAt": "2026-08-31"
+}

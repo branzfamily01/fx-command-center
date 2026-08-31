@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ja">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="FX Command Centerの使い方"><title>FX Command Center · Manual</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="manual.css"></head>
+<body>
+  <main class="manual-wrap">
+    <a href="index.html" class="manual-back">← FX Command Centerへ戻る</a>
+    <p class="eyebrow">DOCUMENTATION / USER MANUAL</p><h1>FX Command Center <span>Manual</span></h1><p class="manual-lead">EAの状態を見て、履歴を読み込み、仮説を検証して、次の判断材料をつくるためのローカル分析ハブです。</p>
+    <div class="manual-grid">
+      <aside class="manual-toc"><strong>CONTENTS</strong><a href="#start">01 はじめに</a><a href="#import">02 CSV取込</a><a href="#analysis">03 分析 / Health</a><a href="#lab">04 Lab / Risk</a><a href="#prompt">05 AIプロンプト</a><a href="#privacy">06 データと注意事項</a></aside>
+      <article class="manual-article">
+        <section id="start"><p class="eyebrow">01 / GET STARTED</p><h2>はじめに</h2><p>ダッシュボードはサンプルデータですぐ試せます。左のナビゲーションから、確認したいワークスペースへ移動してください。画面上部の ↻ はデモデータへのリセット、◌ は Hub manifest の確認です。</p><div class="manual-callout"><strong>おすすめの順番</strong><br>CSVインポート → EA分析 → EA Health → Risk Console → AIプロンプト</div></section>
+        <section id="import"><p class="eyebrow">02 / DATA INGEST</p><h2>CSVを取り込む</h2><p>CSVインポート画面でMT4 / MT5の取引履歴をドロップするか、ファイルを選択します。ヘッダーは Time / Expert / Symbol / Type / Volume / Profit などを自動認識します。</p><ol><li>MT4 / MT5の口座履歴を表示し、対象期間を保存します。</li><li>CSVインポート画面へファイルをドロップします。</li><li>読み込み成功後、自動的にEA分析画面へ移動します。</li></ol><p class="small-note">10MBまで。UTF-8を推奨します。サンプルCSVのダウンロードも可能です。</p></section>
+        <section id="analysis"><p class="eyebrow">03 / OBSERVE</p><h2>EA分析とEA Health</h2><p>EA分析ではEAごとのNet P/L、Return、Max DD、勝率、取引数をカードで比較できます。フィルターの「稼働中」「要確認」で優先順位を絞れます。</p><p>EA Healthは、ステータス、稼働率、ハートビート、直近損益を一覧化します。Watchは停止を意味せず、DDや約定遅延など確認を推奨する状態です。</p></section>
+        <section id="lab"><p class="eyebrow">04 / WHAT-IF</p><h2>LabとRisk Console</h2><p>Labではロット倍率、勝率変化、スプレッド変化、期間を動かし、期待損益・想定DD・Sharpeの方向感を確認します。これは簡易シナリオであり、約定条件や相関を完全に再現するものではありません。</p><p>Risk Consoleでは、口座残高・リスク率・SL距離・通貨ペアのpip valueからロットサイズを計算します。</p><div class="formula">推奨ロット = 口座残高 × リスク率 ÷（SL pips × 1 lotあたりのpip value）</div></section>
+        <section id="prompt"><p class="eyebrow">05 / AI ASSIST</p><h2>AIプロンプトを生成する</h2><p>相談テーマを選ぶと、現在のポートフォリオ指標と直近取引を含む日本語プロンプトが生成されます。追加コンテキストを入力してからコピーし、利用中のAIへ貼り付けてください。</p><p>AIの出力は投資判断そのものではありません。数値の出典、期間、取引コストを確認した上で利用してください。</p></section>
+        <section id="privacy"><p class="eyebrow">06 / DATA POLICY</p><h2>データと注意事項</h2><p>このMVPはサーバーを持たない静的アプリです。CSVはブラウザのメモリとlocalStorageにのみ保存され、外部へ自動送信されません。ブラウザのサイトデータを消去すると読み込み済みデータも消えます。</p><p class="warning-copy">FX・CFD取引には元本割れのリスクがあります。表示値は分析補助のための参考値であり、利益を保証するものではありません。</p></section>
+      </article>
+    </div>
+  </main>
+</body>
+</html>

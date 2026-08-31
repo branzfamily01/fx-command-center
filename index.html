@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08111f">
+  <meta name="description" content="FX Command Center — EAの収益性・健全性・リスクを一つの画面で確認する分析ハブ">
+  <title>FX Command Center</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2308111f'/%3E%3Cpath d='M8 22 14 15l4 3 6-9' fill='none' stroke='%2358d6b0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">↗</div>
+        <div><strong>FX COMMAND</strong><span>CENTER</span></div>
+      </div>
+      <div class="workspace-switcher"><span class="status-dot"></span><div><small>WORKSPACE</small><strong>BRANZ FAMILY</strong></div><span class="chevron">⌄</span></div>
+      <nav class="nav" aria-label="メインナビゲーション">
+        <p class="nav-label">OVERVIEW</p>
+        <button class="nav-item active" data-view="overview"><span>⌂</span>ダッシュボード</button>
+        <button class="nav-item" data-view="analysis"><span>◫</span>EA分析</button>
+        <button class="nav-item" data-view="health"><span>♧</span>EA Health</button>
+        <p class="nav-label">WORKBENCH</p>
+        <button class="nav-item" data-view="import"><span>⇩</span>CSVインポート</button>
+        <button class="nav-item" data-view="lab"><span>◈</span>Lab / シナリオ</button>
+        <button class="nav-item" data-view="risk"><span>⌁</span>Risk Console</button>
+        <p class="nav-label">OUTPUT</p>
+        <button class="nav-item" data-view="prompt"><span>✦</span>AIプロンプト</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <a href="manual.html" target="_blank" class="nav-item"><span>?</span>使い方 / Manual</a>
+        <div class="version"><span class="live-dot"></span>LOCAL MODE <b>v1.0 MVP</b></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="メニュー">☰</button>
+        <div class="breadcrumbs"><span>FX COMMAND CENTER</span><i>/</i><strong id="breadcrumb">DASHBOARD</strong></div>
+        <div class="top-actions"><span class="last-sync">最終更新 <strong id="last-updated">--</strong></span><button class="icon-button" id="reset-data" title="デモデータに戻す">↻</button><a href="my-hub.json" target="_blank" class="icon-button" title="Hub manifest">◌</a><div class="avatar">BF</div></div>
+      </header>
+
+      <div class="page" id="app">
+        <section class="view active" data-view-panel="overview">
+          <div class="page-heading"><div><p class="eyebrow">MONITORING / 2026.08.31</p><h1>おはようございます、BRANZ FAMILY <span>↗</span></h1><p class="muted">EAポートフォリオの現在地と、次に見るべきシグナル。</p></div><button class="primary-button" data-go="import">＋ データを取り込む</button></div>
+          <div class="alert-banner"><div class="alert-icon">!</div><div><strong>2件の要確認シグナル</strong><p>Horizon Grid v3 のDDが過去30日平均を上回っています。リスクコンソールを確認してください。</p></div><button class="text-button" data-go="health">詳細を見る →</button></div>
+          <div class="metric-grid">
+            <article class="metric-card accent-green"><div class="metric-label">PORTFOLIO EQUITY <span class="info">i</span></div><div class="metric-value" id="portfolio-equity">$48,260.40</div><div class="metric-sub positive">＋3.84% <span>vs. 先月</span></div><div class="sparkline" data-points="12,15,14,18,17,20,19,24,23,27,29,32"></div></article>
+            <article class="metric-card"><div class="metric-label">NET PROFIT <span class="info">i</span></div><div class="metric-value" id="net-profit">$8,260.40</div><div class="metric-sub positive">＋12.6% <span>vs. 先月</span></div><div class="sparkline" data-points="8,11,9,13,12,15,14,18,16,21,20,25"></div></article>
+            <article class="metric-card"><div class="metric-label">MAX DRAWDOWN <span class="info">i</span></div><div class="metric-value" id="max-drawdown">-8.42%</div><div class="metric-sub negative">＋1.2pt <span>悪化 / 先月</span></div><div class="sparkline danger" data-points="11,10,12,9,13,14,12,15,17,16,20,23"></div></article>
+            <article class="metric-card"><div class="metric-label">ACTIVE EAs <span class="info">i</span></div><div class="metric-value" id="active-eas">04 <small>/ 06</small></div><div class="metric-sub neutral"><span class="mini-status"></span> 2件に注意</div><div class="health-bars"><i class="good"></i><i class="good"></i><i class="good"></i><i class="warn"></i><i class="warn"></i><i></i></div></article>
+          </div>
+          <div class="content-grid two-thirds"><article class="panel performance-panel"><div class="panel-heading"><div><h2>Equity Curve</h2><p>ポートフォリオ累積損益 · USD</p></div><div class="segmented" id="chart-range"><button class="active" data-range="30">30D</button><button data-range="90">90D</button><button data-range="all">ALL</button></div></div><div class="chart-wrap"><div class="chart-axis"><span>$50k</span><span>$45k</span><span>$40k</span><span>$35k</span></div><svg class="equity-chart" id="equity-chart" viewBox="0 0 720 250" role="img" aria-label="Equity curve"></svg><div class="chart-labels"><span>Jul 28</span><span>Aug 04</span><span>Aug 11</span><span>Aug 18</span><span>Aug 25</span><span>Aug 31</span></div></div></article><article class="panel allocation-panel"><div class="panel-heading"><div><h2>EA Allocation</h2><p>Equity比 · 現在稼働中</p></div><button class="ghost-button" data-go="analysis">全て見る</button></div><div class="donut-row"><div class="donut-chart"><div class="donut-center"><strong>4</strong><span>ACTIVE</span></div></div><div class="legend"><div><i class="legend-dot cyan"></i><span>Horizon Grid</span><b>38%</b></div><div><i class="legend-dot purple"></i><span>London Break</span><b>27%</b></div><div><i class="legend-dot orange"></i><span>Momentum X</span><b>20%</b></div><div><i class="legend-dot blue"></i><span>その他</span><b>15%</b></div></div></div><div class="allocation-foot"><span>Portfolio correlation</span><strong>0.42 <em class="positive">Low</em></strong></div></article></div>
+          <div class="content-grid two-thirds bottom-grid"><article class="panel table-panel"><div class="panel-heading"><div><h2>EA Health Snapshot</h2><p>直近24時間の稼働状態</p></div><button class="ghost-button" data-go="health">Health Center →</button></div><div class="table-scroll"><table><thead><tr><th>EA NAME</th><th>STATUS</th><th>24H P/L</th><th>DD</th><th>LAST TRADE</th></tr></thead><tbody id="health-table"></tbody></table></div></article><article class="panel actions-panel"><div class="panel-heading"><div><h2>Quick Actions</h2><p>よく使う操作</p></div></div><button class="quick-action" data-go="import"><span class="action-icon green">⇩</span><div><strong>取引履歴を更新</strong><small>MT4 / MT5 CSVを読み込む</small></div><b>→</b></button><button class="quick-action" data-go="lab"><span class="action-icon purple">◈</span><div><strong>シナリオを試す</strong><small>パラメータ変更の影響を見る</small></div><b>→</b></button><button class="quick-action" data-go="prompt"><span class="action-icon orange">✦</span><div><strong>AI分析プロンプト</strong><small>データを要約して相談する</small></div><b>→</b></button></article></div>
+        </section>
+
+        <section class="view" data-view-panel="analysis">
+          <div class="page-heading"><div><p class="eyebrow">ANALYTICS / TRADEBOOK</p><h1>EA分析</h1><p class="muted">収益性・安定性・取引の癖をまとめて確認します。</p></div><button class="primary-button" data-go="import">＋ CSVを追加</button></div>
+          <div class="filter-row"><div class="filter-tabs" id="ea-filter"><button class="active" data-filter="all">全て <span>6</span></button><button data-filter="active">稼働中 <span>4</span></button><button data-filter="watch">要確認 <span>2</span></button></div><div class="select-like">期間: <select id="analysis-period"><option>直近30日</option><option>直近90日</option><option>全期間</option></select></div></div>
+          <div class="analysis-grid" id="analysis-cards"></div>
+          <article class="panel table-panel trade-table-panel"><div class="panel-heading"><div><h2>取引統計</h2><p>インポートされた取引履歴から集計</p></div><span class="data-badge" id="trade-count">120 trades</span></div><div class="table-scroll"><table><thead><tr><th>DATE</th><th>EA</th><th>SYMBOL</th><th>TYPE</th><th>LOTS</th><th>NET P/L</th></tr></thead><tbody id="trade-table"></tbody></table></div></article>
+        </section>
+
+        <section class="view" data-view-panel="health">
+          <div class="page-heading"><div><p class="eyebrow">OPERATIONS / HEARTBEAT</p><h1>EA Health <span class="health-pill"><i></i> LIVE</span></h1><p class="muted">稼働状況、異常検知、メンテナンス予定を確認します。</p></div><button class="ghost-button" id="refresh-health">↻ ヘルスチェック</button></div>
+          <div class="health-overview"><div class="health-score"><div class="score-ring"><strong>82</strong><span>/ 100</span></div><div><h3>Good, but watch closely</h3><p>1つのEAでDDの上昇を検知しています。</p><div class="score-scale"><span>Critical</span><span>Watch</span><span>Healthy</span></div></div></div><div class="health-count"><span class="health-number green-text">04</span><small>Healthy</small></div><div class="health-count"><span class="health-number orange-text">02</span><small>Watch</small></div><div class="health-count"><span class="health-number red-text">00</span><small>Offline</small></div></div>
+          <div class="health-list" id="health-list"></div>
+        </section>
+
+        <section class="view" data-view-panel="import">
+          <div class="page-heading"><div><p class="eyebrow">DATA PIPELINE / INGEST</p><h1>CSVインポート</h1><p class="muted">MT4 / MT5の取引履歴をブラウザ内で安全に集計します。</p></div><span class="local-badge">● LOCAL ONLY</span></div>
+          <div class="import-layout"><article class="panel drop-panel" id="drop-zone"><div class="upload-orbit">⇩</div><h2>CSVファイルをドロップ</h2><p>またはファイルを選択してください。データは外部へ送信されません。</p><input type="file" id="csv-file" accept=".csv,text/csv" hidden><button class="primary-button" id="choose-file">ファイルを選択</button><div class="supported"><span>対応形式</span><code>MT4 / MT5 statement CSV</code><span>最大 10MB</span></div></article><article class="panel import-guide"><div class="panel-heading"><div><h2>インポートガイド</h2><p>初めての方はこちら</p></div></div><div class="guide-step"><b>01</b><div><strong>ターミナルから履歴を保存</strong><p>MT4 / MT5の「口座履歴」から期間を指定し、レポートをCSVで保存します。</p></div></div><div class="guide-step"><b>02</b><div><strong>この画面へドロップ</strong><p>ファイルを読み込み、列名を自動認識して集計します。</p></div></div><div class="guide-step"><b>03</b><div><strong>分析とリスク確認</strong><p>EA別の成績を確認し、Labでシナリオを比較します。</p></div></div><button class="download-link" id="download-sample">↓ サンプルCSVをダウンロード</button></article></div>
+          <div class="import-log panel"><div class="panel-heading"><div><h2>データセット</h2><p>このブラウザに保存されている履歴</p></div><button class="ghost-button" id="clear-data">データをクリア</button></div><div id="dataset-status" class="dataset-status"></div></div>
+        </section>
+
+        <section class="view" data-view-panel="lab">
+          <div class="page-heading"><div><p class="eyebrow">RESEARCH / WHAT-IF</p><h1>Lab <span class="beta-badge">BETA</span></h1><p class="muted">仮説を入力し、ポートフォリオへの影響を素早く比較します。</p></div><button class="ghost-button" id="reset-lab">↺ リセット</button></div>
+          <div class="lab-layout"><article class="panel lab-controls"><div class="panel-heading"><div><h2>Scenario Builder</h2><p>前提を動かしてシミュレーション</p></div></div><label>対象EA<select id="lab-ea"><option value="all">ポートフォリオ全体</option><option value="horizon">Horizon Grid v3</option><option value="london">London Breakout</option><option value="momentum">Momentum X</option></select></label><label>ロット倍率 <output id="lot-output">1.00x</output><input type="range" id="lot-slider" min="0.5" max="2" step="0.05" value="1"></label><label>勝率変化 <output id="win-output">+0%</output><input type="range" id="win-slider" min="-15" max="15" step="1" value="0"></label><label>スプレッド変化 <output id="spread-output">+0%</output><input type="range" id="spread-slider" min="0" max="100" step="5" value="0"></label><label>シミュレーション期間<select id="lab-period"><option value="30">30日</option><option value="90">90日</option><option value="365">1年</option></select></label><button class="primary-button full-width" id="run-lab">シナリオを実行 →</button></article><article class="panel lab-result"><div class="panel-heading"><div><h2>Projected Outcome</h2><p id="scenario-caption">現状設定との比較</p></div><span class="run-status" id="lab-status">READY</span></div><div class="projection-grid"><div><span>期待損益</span><strong id="projected-profit">+$8,260</strong><small id="profit-delta" class="positive">+0.0% vs baseline</small></div><div><span>想定DD</span><strong id="projected-dd">-8.42%</strong><small id="dd-delta" class="positive">+0.0pt vs baseline</small></div><div><span>Sharpe</span><strong id="projected-sharpe">1.42</strong><small id="sharpe-delta" class="positive">+0.00 vs baseline</small></div></div><div class="scenario-chart" id="scenario-chart"></div><div class="insight-box"><span>✦</span><p id="lab-insight">シナリオを実行すると、現在の前提に基づくインサイトがここに表示されます。</p></div></article></div>
+        </section>
+
+        <section class="view" data-view-panel="risk">
+          <div class="page-heading"><div><p class="eyebrow">RISK / POSITION SIZING</p><h1>Risk Console</h1><p class="muted">1回のトレードで許容する損失から、ロットサイズを逆算します。</p></div><span class="risk-mode">CONSERVATIVE MODE</span></div>
+          <div class="risk-layout"><article class="panel risk-form"><div class="panel-heading"><div><h2>Position Sizer</h2><p>入力値はローカルでのみ計算されます</p></div></div><label>口座残高（USD）<div class="input-prefix"><span>$</span><input type="number" id="risk-equity" value="48260" min="0"></div></label><label>1トレードのリスク率 <output id="risk-pct-output">1.0%</output><input type="range" id="risk-pct" min="0.1" max="5" step="0.1" value="1"></label><label>ストップロス（pips）<input type="number" id="risk-sl" value="35" min="1"></label><label>通貨ペア<select id="risk-pair"><option value="10">EURUSD · pip value $10 / lot</option><option value="9.2">USDJPY · pip value $9.2 / lot</option><option value="10">GBPUSD · pip value $10 / lot</option><option value="1">XAUUSD · pip value $1 / point</option></select></label><button class="primary-button full-width" id="calculate-risk">ロットサイズを計算</button></article><article class="panel risk-result"><div class="risk-result-top"><div><span>推奨ロットサイズ</span><strong id="recommended-lot">1.38 <small>lots</small></strong></div><div class="risk-meter"><div><span>Risk / trade</span><strong id="risk-amount">$482.60</strong></div><div class="meter"><i id="risk-meter-fill"></i></div><small id="risk-level">Within your 1.0% limit</small></div></div><div class="risk-breakdown"><div><span>許容損失額</span><strong id="allowed-loss">$482.60</strong></div><div><span>SL距離</span><strong id="sl-display">35 pips</strong></div><div><span>Portfolio DD</span><strong class="orange-text">8.42%</strong></div></div><div class="risk-warning"><span>!</span><p><strong>相関リスクに注意</strong><br>EURUSD系EAが3つ稼働中です。同方向ポジションの合算リスクを確認してください。</p></div></article></div><article class="panel risk-matrix"><div class="panel-heading"><div><h2>Risk Matrix</h2><p>ストップロスとリスク率ごとの推奨ロット</p></div></div><div id="risk-table"></div></article>
+        </section>
+
+        <section class="view" data-view-panel="prompt">
+          <div class="page-heading"><div><p class="eyebrow">AI ASSIST / CONTEXT BUILDER</p><h1>AIプロンプト生成</h1><p class="muted">現在の分析データを、相談しやすい形のプロンプトに変換します。</p></div><button class="primary-button" id="copy-prompt">コピーする ⧉</button></div>
+          <div class="prompt-layout"><article class="panel prompt-options"><div class="panel-heading"><div><h2>相談テーマ</h2><p>AIに聞きたいことを選択</p></div></div><div class="prompt-presets" id="prompt-presets"><button class="selected" data-prompt="review">EAの成績をレビュー</button><button data-prompt="risk">リスクとDDを診断</button><button data-prompt="improve">改善ポイントを提案</button><button data-prompt="compare">EAを比較</button></div><label>追加コンテキスト（任意）<textarea id="prompt-context" placeholder="例：来月からリスク率を0.5%に下げるべきか見てください"></textarea></label><div class="prompt-includes"><strong>含めるデータ</strong><label><input type="checkbox" checked> EA別パフォーマンス</label><label><input type="checkbox" checked> DD / リスク指標</label><label><input type="checkbox" checked> 直近の取引履歴</label></div></article><article class="panel prompt-preview"><div class="panel-heading"><div><h2>Generated Prompt</h2><p id="prompt-tone">日本語 / 投資リサーチ向け</p></div><span class="data-badge">READY</span></div><pre id="generated-prompt"></pre><div class="prompt-footer"><span id="prompt-length">0 characters</span><button class="ghost-button" id="copy-prompt-bottom">コピー ⧉</button></div></article></div>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
