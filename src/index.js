@@ -1,5 +1,5 @@
 // Runtime secret is provided by Cloudflare; never store its value here.
-const SESSION_COOKIE = "__limited_session_v2";
+const SESSION_COOKIE = "__limited_session_v3";
 const SESSION_TTL = 60 * 60 * 24 * 30;
 const encoder = new TextEncoder();
 
